@@ -1,0 +1,40 @@
+{
+  "name": "prompt-lab-backend",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "tsc --noEmit",
+    "test": "echo \"Tests not yet configured\" && exit 0"
+  },
+  "keywords": [
+    "prompt-engineering",
+    "llm",
+    "ai",
+    "experiment-management"
+  ],
+  "author": "",
+  "license": "MIT",
+  "description": "Backend API for Prompt Lab - Prompt Engineering & Experiment Management System",
+  "dependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.10.1",
+    "@types/uuid": "^10.0.0",
+    "better-sqlite3": "^12.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.44.7",
+    "express": "^5.2.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "uuid": "^13.0.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "drizzle-kit": "^0.31.7"
+  }
+}
