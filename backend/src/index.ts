@@ -28,10 +28,20 @@ app.use('/api/experiments', experimentsRouter);
 app.use('/api/ape', apeRouter);
 app.use('/api/providers', providersRouter);
 
-// Error handling middleware
+// Error handling middleware with structured logging
 app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-  console.error('Unhandled error:', err);
-  res.status(500).json({ error: 'Internal server error' });
+  // Log error details for debugging (in production, use a proper logger)
+  const errorId = Date.now().toString(36);
+  console.error(`[${errorId}] Unhandled error:`, {
+    message: err.message,
+    stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
+  });
+  
+  // Return generic error to client without exposing internal details
+  res.status(500).json({ 
+    error: 'Internal server error',
+    errorId, // Allow correlation with server logs
+  });
 });
 
 // Start server

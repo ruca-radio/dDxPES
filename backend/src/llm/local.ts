@@ -1,5 +1,8 @@
 import { LLMProvider, LLMRequest, LLMResponse, ProviderConfig } from './types';
 
+// Default URL for local LLM endpoints (Ollama, LM Studio, etc.)
+const DEFAULT_LOCAL_LLM_URL = 'http://localhost:11434/v1';
+
 interface LocalLLMResponse {
   choices?: Array<{
     message?: { content?: string };
@@ -21,8 +24,7 @@ export class LocalProvider implements LLMProvider {
   private baseUrl: string;
 
   constructor(config: ProviderConfig) {
-    // Default to common local LLM endpoints (Ollama, LM Studio, etc.)
-    this.baseUrl = config.baseUrl || process.env.LOCAL_LLM_URL || 'http://localhost:11434/v1';
+    this.baseUrl = config.baseUrl || process.env.LOCAL_LLM_URL || DEFAULT_LOCAL_LLM_URL;
   }
 
   async chat(request: LLMRequest): Promise<LLMResponse> {
